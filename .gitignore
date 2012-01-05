@@ -76,3 +76,5 @@ ClientBin
 stylecop.*
 ~$*
 *.dbmdl
+dll
+pdb
