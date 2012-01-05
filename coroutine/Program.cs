@@ -7,9 +7,9 @@ using System.Collections;
 
 namespace coroutine
 {
-    abstract class VoiceCommandPlugin
+    abstract class App
     {
-        public VoiceCommandPlugin( string name )
+        public App( string name )
         {
             Name = name;
         }
@@ -23,7 +23,7 @@ namespace coroutine
         public abstract void Command( string command );
     }
 
-    class PowerPoint : VoiceCommandPlugin
+    class PowerPoint : App
     {
         public PowerPoint()
             : base( "powerpoint" )
@@ -50,14 +50,14 @@ namespace coroutine
         public int y = 0;
         IEnumerator<Command> thread;
 
-        List<VoiceCommandPlugin> apps = new List<VoiceCommandPlugin>();
+        List<App> apps = new List<App>();
 
         public MicroThread()
         {
             init();
         }
 
-        public void AddApp( VoiceCommandPlugin app )
+        public void AddApp( App app )
         {
             apps.Add( app );
         }
@@ -113,6 +113,7 @@ namespace coroutine
 
             t.DoWork( "exproler" );
             t.DoWork( "close" );
+
 
             t.DoWork( "powerpoint" );
             t.DoWork( "prev" );
