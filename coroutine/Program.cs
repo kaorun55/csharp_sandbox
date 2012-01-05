@@ -88,8 +88,9 @@ namespace coroutine
             if ( c.Count() != 0 ) {
                 yield return c.First().Command;
             }
-
-            Console.WriteLine( "invalid application." );
+            else {
+                Console.WriteLine( "invalid application." );
+            }
         }
     }
 

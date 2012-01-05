@@ -5,11 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linq_sample", "linq_sample\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coroutine", "coroutine\coroutine.csproj", "{A0644CB9-6C97-474A-A338-3154176ECAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceCommandPlugin", "VoiceCommandPlugin\VoiceCommandPlugin.csproj", "{E4477E50-2B19-4F49-98C5-93B0C79F2E72}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VoiceCommandPlugin", "VoiceCommandPlugin", "{DCE1BF56-35E9-4FDE-8449-B39EF6FABAF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPointPlugin", "PowerPointPlugin\PowerPointPlugin.csproj", "{D9177688-30DD-4F74-AB58-3D104B00D9C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPointPlugin", "VoiceCommandPlugin\PowerPointPlugin\PowerPointPlugin.csproj", "{D9177688-30DD-4F74-AB58-3D104B00D9C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceCommand", "VoiceCommand\VoiceCommand.csproj", "{A69E4469-9B2C-4211-B6AD-047FF9EF59AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceCommand", "VoiceCommandPlugin\VoiceCommand\VoiceCommand.csproj", "{A69E4469-9B2C-4211-B6AD-047FF9EF59AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceCommandPlugin", "VoiceCommandPlugin\VoiceCommandPlugin\VoiceCommandPlugin.csproj", "{E4477E50-2B19-4F49-98C5-93B0C79F2E72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,16 +43,6 @@ Global
 		{A0644CB9-6C97-474A-A338-3154176ECAD9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A0644CB9-6C97-474A-A338-3154176ECAD9}.Release|x86.ActiveCfg = Release|x86
 		{A0644CB9-6C97-474A-A338-3154176ECAD9}.Release|x86.Build.0 = Release|x86
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|x86.ActiveCfg = Release|Any CPU
 		{D9177688-30DD-4F74-AB58-3D104B00D9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9177688-30DD-4F74-AB58-3D104B00D9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9177688-30DD-4F74-AB58-3D104B00D9C1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -71,8 +63,23 @@ Global
 		{A69E4469-9B2C-4211-B6AD-047FF9EF59AF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A69E4469-9B2C-4211-B6AD-047FF9EF59AF}.Release|x86.ActiveCfg = Release|x86
 		{A69E4469-9B2C-4211-B6AD-047FF9EF59AF}.Release|x86.Build.0 = Release|x86
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9177688-30DD-4F74-AB58-3D104B00D9C1} = {DCE1BF56-35E9-4FDE-8449-B39EF6FABAF5}
+		{A69E4469-9B2C-4211-B6AD-047FF9EF59AF} = {DCE1BF56-35E9-4FDE-8449-B39EF6FABAF5}
+		{E4477E50-2B19-4F49-98C5-93B0C79F2E72} = {DCE1BF56-35E9-4FDE-8449-B39EF6FABAF5}
 	EndGlobalSection
 EndGlobal
