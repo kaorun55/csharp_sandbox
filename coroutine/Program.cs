@@ -7,37 +7,89 @@ using System.Collections;
 
 namespace coroutine
 {
+    abstract class VoiceCommandPlugin
+    {
+        public VoiceCommandPlugin( string name )
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public abstract void Command( string command );
+    }
+
+    class PowerPoint : VoiceCommandPlugin
+    {
+        public PowerPoint()
+            : base( "powerpoint" )
+        {
+        }
+
+        public override void Command( string command )
+        {
+            if ( command == "next" ) {
+                Console.WriteLine( "next" );
+            }
+            else if ( command == "prev" ) {
+                Console.WriteLine( "prev" );
+            }
+            else {
+                Console.WriteLine( "invalid command." );
+            }
+        }
+    }
+
     class MicroThread
     {
         public int x = 0;
         public int y = 0;
-        IEnumerator thread;
+        IEnumerator<Command> thread;
+
+        List<VoiceCommandPlugin> apps = new List<VoiceCommandPlugin>();
 
         public MicroThread()
         {
-            thread = get();
+            init();
         }
 
-        public void update()
+        public void AddApp( VoiceCommandPlugin app )
+        {
+            apps.Add( app );
+        }
+
+        void init()
+        {
+            thread = get();
+            thread.MoveNext();
+        }
+
+        public void DoWork( string command )
         {
             if ( thread != null ) {
+                thread.Current( command );
                 if ( !thread.MoveNext() ) {
-                    thread = null;
+                    init();
                 }
             }
         }
 
-        IEnumerator get()
+        delegate void Command( string command );
+        IEnumerator<Command> get()
         {
-            for ( int i = 1; i <= 10; ++i ) {
-                x = i;
-                yield return null;
+            string name = "";
+            yield return ( app ) => name = app;
+
+            var c = apps.Where( ( a ) => a.Name == name );
+            if ( c.Count() != 0 ) {
+                yield return c.First().Command;
             }
 
-            for ( int i = 1; i <= 10; ++i ) {
-                y = i;
-                yield return null;
-            }
+            Console.WriteLine( "invalid application." );
         }
     }
 
@@ -46,11 +98,24 @@ namespace coroutine
         static void Main( string[] args )
         {
             MicroThread t = new MicroThread();
+            t.AddApp( new PowerPoint() );
 
-            for ( int i = 0; i < 15; ++i ) {
-                Console.WriteLine( "{0}:{1}, {2}", i, t.x, t.y );
-                t.update();
-            }
+            t.DoWork( "powerpoint" );
+            t.DoWork( "next" );
+
+            t.DoWork( "powerpoint" );
+            t.DoWork( "close" );
+
+            t.DoWork( "powerpoint" );
+            t.DoWork( "prev" );
+
+            t.DoWork( "powerpoint" );
+
+            t.DoWork( "exproler" );
+            t.DoWork( "close" );
+
+            t.DoWork( "powerpoint" );
+            t.DoWork( "prev" );
         }
     }
 }
