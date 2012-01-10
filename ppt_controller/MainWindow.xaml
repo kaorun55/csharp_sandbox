@@ -1,0 +1,10 @@
+﻿<Window x:Class="ppt_controller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="スライドショー画面を探す" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="buttonFindSlideShow" VerticalAlignment="Top" Width="185" Click="buttonFindSlideShow_Click" />
+        <Button Content="次へ" Height="23" HorizontalAlignment="Left" Margin="12,41,0,0" Name="buttonNext" VerticalAlignment="Top" Width="185" Click="buttonNext_Click" />
+        <Button Content="前へ" Height="23" HorizontalAlignment="Left" Margin="12,70,0,0" Name="buttonPrev" VerticalAlignment="Top" Width="185" Click="buttonPrev_Click" />
+    </Grid>
+</Window>
