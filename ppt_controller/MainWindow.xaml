@@ -6,5 +6,7 @@
         <Button Content="スライドショー画面を探す" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="buttonFindSlideShow" VerticalAlignment="Top" Width="185" Click="buttonFindSlideShow_Click" />
         <Button Content="次へ" Height="23" HorizontalAlignment="Left" Margin="12,41,0,0" Name="buttonNext" VerticalAlignment="Top" Width="185" Click="buttonNext_Click" />
         <Button Content="前へ" Height="23" HorizontalAlignment="Left" Margin="12,70,0,0" Name="buttonPrev" VerticalAlignment="Top" Width="185" Click="buttonPrev_Click" />
+        <Button Content="終了" Height="23" HorizontalAlignment="Left" Margin="12,128,0,0" Name="buttonEnd" VerticalAlignment="Top" Width="185" Click="buttonEnd_Click" />
+        <Button Content="先頭に移動" Height="23" HorizontalAlignment="Left" Margin="12,99,0,0" Name="buttonMoveFirst" VerticalAlignment="Top" Width="185" Click="buttonMoveFirst_Click" />
     </Grid>
 </Window>

@@ -59,5 +59,25 @@ namespace ppt_controller
                 MessageBox.Show( ex.Message );
             }
         }
+
+        private void buttonEnd_Click( object sender, RoutedEventArgs e )
+        {
+            try {
+                ppt.End();
+            }
+            catch ( Exception ex ) {
+                MessageBox.Show( ex.Message );
+            }
+        }
+
+        private void buttonMoveFirst_Click( object sender, RoutedEventArgs e )
+        {
+            try {
+                ppt.MoveFirst();
+            }
+            catch ( Exception ex ) {
+                MessageBox.Show( ex.Message );
+            }
+        }
     }
 }

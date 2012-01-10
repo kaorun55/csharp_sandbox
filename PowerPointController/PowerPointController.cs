@@ -10,15 +10,25 @@ namespace kaorun55
 {
     public class PowerPointController
     {
-        IntPtr slideWindow = IntPtr.Zero;
-        const string defaultPrefix = "PowerPoint スライド ショー";
+        private IntPtr slideWindow = IntPtr.Zero;
+        private IntPtr pptWindow = IntPtr.Zero;
+
+        const string defaultSlideShowPrefix = "PowerPoint スライド ショー";
+        const string defaultPowerPointPpostfix = "Microsoft PowerPoint";
 
         public PowerPointController()
         {
-            Prefix = defaultPrefix;
+            SlideShowPrefix = defaultSlideShowPrefix;
+            PowerPointPpostfix = defaultPowerPointPpostfix;
         }
 
-        public string Prefix
+        public string SlideShowPrefix
+        {
+            get;
+            set;
+        }
+
+        public string PowerPointPpostfix
         {
             get;
             set;
@@ -28,38 +38,63 @@ namespace kaorun55
         {
             slideWindow = IntPtr.Zero;
 
+            // PPTとスライドショーを探す
             EnumWindows( new EnumWindowsDelegate( delegate( IntPtr hWnd, int lParam )
             {
                 StringBuilder sb = new StringBuilder( 0x1024 );
                 if ( (IsWindowVisible( hWnd ) != 0) && (GetWindowText( hWnd, sb, sb.Capacity ) != 0) ) {
                     string title = sb.ToString();
                     Debug.Print( title );
-                    if ( title.StartsWith( Prefix ) ) {
+                    if ( title.StartsWith( SlideShowPrefix ) ) {
                         slideWindow = hWnd;
+                    }
+                    else if ( title.EndsWith( PowerPointPpostfix ) ) {
+                        pptWindow = hWnd;
                     }
                 }
                 return 1;
             } ), 0 );
 
             if ( slideWindow == IntPtr.Zero ) {
-                throw new Exception( "PowerPointのスライドショーが見つかりませんでした" );
+                if ( pptWindow == IntPtr.Zero ) {
+                    throw new Exception( "PowerPointまたはスライドショーが見つかりませんでした" );
+                }
+
+                // PPT があれば、スライドショーを開始すして、もう一度探す
+                SendKey( pptWindow, "{F5}" );
+                FindSlideShow();
             }
         }
 
         public void Next()
         {
-            SendKey( "{Right}" );
+            SendKey( slideWindow, "{Right}" );
         }
 
         public void Prev()
         {
-            SendKey( "{Left}" );
+            SendKey( slideWindow, "{Left}" );
         }
 
-        private void SendKey( string key )
+        public void End()
         {
-            if ( slideWindow != IntPtr.Zero ) {
-                bool ret = SetForegroundWindow( slideWindow );
+            SendKey( slideWindow, "{Escape}" );
+        }
+
+        public void Move( int page )
+        {
+            SendKey( slideWindow, page.ToString() + "{Enter}" );
+        }
+
+        public void MoveFirst()
+        {
+            Move( 1 );
+        }
+
+        private void SendKey( IntPtr window, string key )
+        {
+            if ( window != IntPtr.Zero ) {
+                bool ret = SetForegroundWindow( window );
                 if ( !ret ) {
                     throw new Exception( "ウィンドウを前面に出せません" );
                 }
@@ -68,9 +103,11 @@ namespace kaorun55
             }
         }
 
+
+
         private delegate int EnumWindowsDelegate( IntPtr hWnd, int lParam );
 
-        [DllImport( "USER32.DLL" )]
+        [DllImport( "user32.DLL" )]
         public static extern bool SetForegroundWindow( IntPtr hWnd );
         [DllImport( "user32.dll" )]
         private static extern int EnumWindows( EnumWindowsDelegate lpEnumFunc, int lParam );
