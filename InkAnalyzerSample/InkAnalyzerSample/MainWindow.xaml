@@ -1,0 +1,18 @@
+﻿<Window x:Class="InkAnalyzerSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="637">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Name="btnAnalyze" Content="文字認識" Click="btnAnalyze_Click" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Border Width="Auto" Height="Auto" Name="WindowFrame" BorderBrush="Black" BorderThickness="1">
+                <InkCanvas Name="InkCanvas1" EditingMode="Ink" Width="153" Background="White" />
+            </Border>
+            <InkCanvas EditingMode="Ink" Name="inkCanvas2" Width="153" />
+            <InkCanvas EditingMode="Ink" Name="inkCanvas3" Width="153" />
+            <InkCanvas EditingMode="Ink" Name="inkCanvas4" Width="153" />
+        </StackPanel>
+    </StackPanel>
+</Window>
