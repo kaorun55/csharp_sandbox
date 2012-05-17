@@ -1,0 +1,41 @@
+﻿<Window x:Class="MultitouchSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600" Width="800"  
+        ManipulationStarting="Window_ManipulationStarting" 
+        ManipulationDelta="Window_ManipulationDelta"
+        WindowState="Maximized">
+    <Canvas>
+        
+        <Rectangle Fill="Blue" Width="200" Height="200"
+                 IsManipulationEnabled="True" Canvas.Left="-112" Canvas.Top="118">
+            <Rectangle.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix>
+                        <Matrix OffsetX="200" OffsetY="200"/>
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <Image Name="image1" Stretch="Uniform" IsManipulationEnabled="True" Source="/MultitouchSample;component/Images/animation1.jpg" Height="245" Width="288">
+            <Image.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix>
+                        <Matrix OffsetX="50" OffsetY="50"/>
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Image.RenderTransform>
+        </Image>
+
+        <Image Stretch="Uniform" IsManipulationEnabled="True" Source="/MultitouchSample;component/Images/sample3.png" Height="310" Width="417" Canvas.Left="323" Canvas.Top="172">
+            <Image.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix>
+                        <Matrix OffsetX="10" OffsetY="70"/>
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Image.RenderTransform>
+        </Image>
+    </Canvas>
+</Window>
